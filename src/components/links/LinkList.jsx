@@ -1,29 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { FallingLines } from "react-loader-spinner";
 import useFetch from "../../hooks/useFetch";
 import { HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi";
-import { doc, deleteDoc } from "firebase/firestore";
-import { db } from "../../config/firebaseConfig";
-import { toast } from "react-hot-toast";
-import { useState } from "react";
 import Modal from "../modal/Modal";
+import moment from "moment";
 
 const LinkList = () => {
   const { data, isLoading } = useFetch();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedData, setSelectedData] = useState({});
 
-  const handleDeleteData = async (selectedDataID) => {
-    try {
-      const savedLinkRef = doc(db, "LinksDB", selectedDataID);
-      await deleteDoc(savedLinkRef);
-      toast.success("Successfully deleted data");
-    } catch (err) {
-      toast.error(err.message);
-    }
+  const handleOpenModal = (selectedLink) => {
+    setIsModalOpen(true);
+    setSelectedData(selectedLink);
   };
 
-  const handleOpenModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -58,12 +51,15 @@ const LinkList = () => {
                 <a target="_blank" className="text-xs italic" href={doc.link}>
                   {doc.link}
                 </a>
+                <p className="text-xs mt-2">
+                  {moment(doc.timeStamp.toDate()).format("ddd MMM DD YYYY")}
+                </p>
               </div>
               <div className="flex items-center justify-center gap-3">
                 <button>
                   <HiOutlinePencilAlt size={20} />
                 </button>
-                <button onClick={handleOpenModal}>
+                <button onClick={() => handleOpenModal(doc)}>
                   <HiOutlineTrash size={20} />
                 </button>
               </div>
@@ -71,7 +67,12 @@ const LinkList = () => {
           ))}
         </div>
       )}
-      {isModalOpen && <Modal />}
+      {isModalOpen && (
+        <Modal
+          selectedData={selectedData}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
     </div>
   );
 };
