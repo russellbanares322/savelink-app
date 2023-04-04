@@ -25,6 +25,7 @@ const LinkList = () => {
       <input
         className="my-3 w-full rounded-lg h-8 focus:ring-2 ring-blue bg-gray-600 p-2 font-bold text-white outline-none"
         type="text"
+        placeholder="Search links here..."
       />
       {isLoading && (
         <div className="flex justify-center items-center pt-2">

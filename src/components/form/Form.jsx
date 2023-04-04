@@ -50,6 +50,7 @@ const Form = ({ setIsModalOpen }) => {
           className="rounded-lg h-8 focus:ring-2 ring-blue bg-gray-600 p-2 font-bold text-white outline-none"
           name="description"
           type="text"
+          placeholder="Enter description..."
           onChange={handleInputChange}
         />
         <label className="mt-3">Link</label>
@@ -58,6 +59,7 @@ const Form = ({ setIsModalOpen }) => {
           className="rounded-lg h-8 focus:ring-2 ring-blue bg-gray-600 p-2 font-bold text-white outline-none"
           name="link"
           type="text"
+          placeholder="Enter link..."
           onChange={handleInputChange}
         />
         <button
