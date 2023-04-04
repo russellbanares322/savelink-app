@@ -4,12 +4,13 @@ import toast from "react-hot-toast";
 import { HiOutlineX } from "react-icons/hi";
 import { db } from "../../config/firebaseConfig";
 
-const Modal = ({ handleCloseModal, selectedData }) => {
+const Modal = ({ handleCloseModal, selectedData, setIsModalOpen }) => {
   const handleDeleteData = async () => {
     try {
       const savedLinkRef = doc(db, "LinksDB", selectedData.id);
       await deleteDoc(savedLinkRef);
       toast.success("Successfully deleted data");
+      setIsModalOpen(false);
     } catch (err) {
       toast.error(err.message);
     }

@@ -21,12 +21,12 @@ const LinkList = () => {
 
   return (
     <div className="mt-24">
-      <h1 className="text-blue font-bold">Important Links</h1>
       <input
-        className="my-3 w-full rounded-lg h-8 focus:ring-2 ring-blue bg-gray-600 p-2 font-bold text-white outline-none"
+        className="my-3 w-full rounded-xl h-10 focus:ring-2 ring-blue bg-gray-600 p-2 font-bold text-white outline-none"
         type="text"
         placeholder="Search links here..."
       />
+      <h1 className="text-blue font-bold my-4">Important Links:</h1>
       {isLoading && (
         <div className="flex justify-center items-center pt-2">
           <FallingLines
@@ -42,7 +42,7 @@ const LinkList = () => {
           {data.map((doc) => (
             <div
               key={doc.id}
-              className="bg-white mt-2 text-blue rounded-lg p-3 flex justify-between items-center"
+              className="bg-white mt-2 text-blue rounded-lg p-3 flex justify-between items-center drop-shadow-md"
             >
               <div>
                 <p className="mb-1 font-bold text-sm">
@@ -55,7 +55,7 @@ const LinkList = () => {
                   {moment(doc.timeStamp.toDate()).format("ddd MMM DD YYYY")}
                 </p>
               </div>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-center gap-2">
                 <button>
                   <HiOutlinePencilAlt size={20} />
                 </button>
@@ -71,6 +71,7 @@ const LinkList = () => {
         <Modal
           selectedData={selectedData}
           handleCloseModal={handleCloseModal}
+          setIsModalOpen={setIsModalOpen}
         />
       )}
     </div>
