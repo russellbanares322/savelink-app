@@ -5,11 +5,14 @@ import { HiOutlinePencilAlt, HiOutlineTrash } from "react-icons/hi";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../config/firebaseConfig";
 import { toast } from "react-hot-toast";
+import { useState } from "react";
+import Modal from "../modal/Modal";
 
 const LinkList = () => {
   const { data, isLoading } = useFetch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleDeleteLink = async (selectedDataID) => {
+  const handleDeleteData = async (selectedDataID) => {
     try {
       const savedLinkRef = doc(db, "LinksDB", selectedDataID);
       await deleteDoc(savedLinkRef);
@@ -17,6 +20,10 @@ const LinkList = () => {
     } catch (err) {
       toast.error(err.message);
     }
+  };
+
+  const handleOpenModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
@@ -30,7 +37,7 @@ const LinkList = () => {
       {isLoading && (
         <div className="flex justify-center items-center pt-2">
           <FallingLines
-            color="#4fa94d"
+            color="#0A083A"
             width="100"
             visible={true}
             ariaLabel="falling-lines-loading"
@@ -56,7 +63,7 @@ const LinkList = () => {
                 <button>
                   <HiOutlinePencilAlt size={20} />
                 </button>
-                <button onClick={() => handleDeleteLink(doc.id)}>
+                <button onClick={handleOpenModal}>
                   <HiOutlineTrash size={20} />
                 </button>
               </div>
@@ -64,6 +71,7 @@ const LinkList = () => {
           ))}
         </div>
       )}
+      {isModalOpen && <Modal />}
     </div>
   );
 };
