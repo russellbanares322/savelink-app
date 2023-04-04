@@ -45,10 +45,10 @@ const LinkList = () => {
               className="bg-white mt-2 text-blue rounded-lg p-3 flex justify-between items-center"
             >
               <div>
-                <p className="mb-1 font-bold">
+                <p className="mb-1 font-bold text-sm">
                   {doc.description.toUpperCase()}
                 </p>
-                <a target="_blank" className="text-sm" href={doc.link}>
+                <a target="_blank" className="text-xs italic" href={doc.link}>
                   {doc.link}
                 </a>
               </div>
