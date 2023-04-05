@@ -42,7 +42,7 @@ const LinkList = () => {
           {data.map((doc) => (
             <div
               key={doc.id}
-              className="bg-white mt-2 text-blue rounded-lg p-3 flex justify-between items-center drop-shadow-md"
+              className="bg-white mt-2 text-blue rounded-lg p-3 flex flex-wrap justify-between items-center drop-shadow-md"
             >
               <div>
                 <p className="mb-1 font-bold text-sm">
@@ -52,7 +52,7 @@ const LinkList = () => {
                   {doc.link}
                 </a>
                 <p className="text-xs mt-2">
-                  {moment(doc.timeStamp.toDate()).format("ddd MMM DD YYYY")}
+                  {moment(doc.timeStamp?.toDate()).format("ddd MMM DD YYYY")}
                 </p>
               </div>
               <div className="flex items-center justify-center gap-2">

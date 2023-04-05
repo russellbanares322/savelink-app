@@ -8,7 +8,6 @@ const Form = ({ setIsModalOpen }) => {
   const [formInput, setFormInput] = useState({
     description: "",
     link: "",
-    timeStamp: "",
   });
 
   const handleInputChange = (e) => {
