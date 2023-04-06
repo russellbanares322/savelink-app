@@ -4,7 +4,7 @@ import { toast } from "react-hot-toast";
 import { db } from "../../config/firebaseConfig";
 import { HiOutlineX } from "react-icons/hi";
 
-const Form = ({ setIsModalOpen }) => {
+const Form = ({ isModalOpen, setIsModalOpen }) => {
   const [formInput, setFormInput] = useState({
     description: "",
     link: "",
@@ -45,10 +45,14 @@ const Form = ({ setIsModalOpen }) => {
   };
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-70 z-20">
+    <div
+      className={`fixed inset-0 flex justify-center items-center bg-black bg-opacity-70 z-20 transition duration-100 ease-in-out ${
+        !isModalOpen && "scale-0"
+      }`}
+    >
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col text-blue w-80 bg-white pb-5 pt-2 px-3 rounded-lg translate-y-[-10px] h-auto m-3 md:m-0 shadow-light-blue shadow"
+        className="flex flex-col text-blue w-80 bg-white pb-5 pt-2 px-3 rounded-lg translate-y-[-10px] h-auto m-3 md:m-0 shadow-light-blue shadow transition duration-100 ease-in-out"
       >
         <HiOutlineX
           onClick={handleCloseModal}

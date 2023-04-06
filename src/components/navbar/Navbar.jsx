@@ -21,7 +21,7 @@ const Navbar = () => {
           Add link
         </button>
       </div>
-      {isModalOpen && <Form setIsModalOpen={setIsModalOpen} />}
+      <Form isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </div>
   );
 };
