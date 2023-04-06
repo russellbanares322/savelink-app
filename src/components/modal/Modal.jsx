@@ -18,7 +18,7 @@ const Modal = ({ handleCloseModal, selectedData, setIsModalOpen }) => {
 
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-70">
-      <div className="bg-white translate-y-[-10px] h-auto w-[25rem] rounded-xl p-3 m-3 md:m-0">
+      <div className="bg-white translate-y-[-10px] h-auto w-[25rem] rounded-xl p-3 m-3 md:m-0 shadow-light-blue shadow">
         <HiOutlineX
           onClick={handleCloseModal}
           className="ml-auto cursor-pointer text-blue"

@@ -48,7 +48,7 @@ const Form = ({ setIsModalOpen }) => {
     <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-70 z-20">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col text-blue w-80 bg-white pb-5 pt-2 px-3 rounded-lg translate-y-[-10px] h-auto m-3 md:m-0"
+        className="flex flex-col text-blue w-80 bg-white pb-5 pt-2 px-3 rounded-lg translate-y-[-10px] h-auto m-3 md:m-0 shadow-light-blue shadow"
       >
         <HiOutlineX
           onClick={handleCloseModal}
