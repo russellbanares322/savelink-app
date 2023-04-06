@@ -4,9 +4,22 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  body {
+    min-height: 100vh;
+    display: flex;
+    background-color: "#D8E6F1";
   }
+
+  #root {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
