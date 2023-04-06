@@ -8,12 +8,16 @@ import {
 } from "react-icons/hi";
 import Modal from "../modal/Modal";
 import moment from "moment";
+import SearchInput from "../search/SearchInput";
+import useSearchInput from "../../hooks/useSearchInput";
 
 const LinkList = () => {
   const { data, isLoading } = useFetch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedData, setSelectedData] = useState({});
   const [selectedActionId, setSelectedActionId] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
+  const filteredData = useSearchInput(searchInput, data);
 
   const handleOpenModal = (selectedLink) => {
     setIsModalOpen(true);
@@ -32,11 +36,7 @@ const LinkList = () => {
 
   return (
     <div className="mt-24">
-      <input
-        className="my-3 w-full rounded-xl h-10 focus:ring-2 ring-blue bg-gray-600 p-2 font-bold text-white outline-none"
-        type="text"
-        placeholder="Search links here..."
-      />
+      <SearchInput setSearchInput={setSearchInput} />
       <h1 className="text-blue font-bold my-4">Important Links:</h1>
       {isLoading && (
         <div className="flex justify-center items-center pt-2">
@@ -50,7 +50,7 @@ const LinkList = () => {
       )}
       {!isLoading && (
         <div>
-          {data.map((doc) => (
+          {filteredData.map((doc) => (
             <div
               key={doc.id}
               className="bg-white mt-2 text-blue rounded-lg p-3 flex justify-between items-start drop-shadow-md"
