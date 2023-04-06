@@ -1,7 +1,7 @@
 import Home from "./components/home/Home";
 function App() {
   return (
-    <div className="bg-light-blue font-jetbrains flex flex-col justify-center items-center h-full w-full py-4 px-1 md:px-10">
+    <div className="bg-light-blue font-jetbrains flex flex-col justify-center items-center h-full w-full py-4 px-3 md:px-10">
       <div className="h-full w-full md:w-[45rem]">
         <Home />
       </div>
