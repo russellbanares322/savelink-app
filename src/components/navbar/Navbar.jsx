@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Form from "../form/Form";
+import logo from "/linksve_logo.png";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,7 +13,7 @@ const Navbar = () => {
   return (
     <div className="relative">
       <div className="flex justify-between items-center mt-5">
-        <h3 className="font-bold">SaveLink</h3>
+        <img className="h-12 w-14" src={logo} />
         <button
           onClick={handleToggleModal}
           className="bg-blue text-white h-8 w-36 rounded-lg"
