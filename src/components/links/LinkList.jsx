@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FallingLines } from "react-loader-spinner";
 import useFetch from "../../hooks/useFetch";
 import {
-  HiOutlineChevronDown,
+  HiOutlineCog,
   HiOutlinePencilAlt,
   HiOutlineTrash,
 } from "react-icons/hi";
@@ -70,11 +70,11 @@ const LinkList = () => {
                 onClick={() => handleOpenActions(doc.id)}
                 className="relative"
               >
-                <HiOutlineChevronDown
+                <HiOutlineCog
                   className={`cursor-pointer transition duration-200 ease-in-out ${
                     selectedActionId === doc.id ? "rotate-[180deg]" : "rotate-0"
                   }`}
-                  size={18}
+                  size={19}
                 />
                 <div
                   className={`${
