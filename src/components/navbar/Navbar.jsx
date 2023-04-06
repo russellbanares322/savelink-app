@@ -16,7 +16,7 @@ const Navbar = () => {
         <img className="h-12 w-14" src={logo} />
         <button
           onClick={handleToggleModal}
-          className="bg-blue text-white h-8 w-36 rounded-lg"
+          className="bg-blue text-white h-8 w-28 text-sm md:text-md md:h-8 md:w-36 rounded-lg"
         >
           Add link
         </button>
