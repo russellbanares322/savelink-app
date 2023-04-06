@@ -1,5 +1,3 @@
-import React from "react";
-
 const useSearchInput = (searchInput, data) => {
   if (!searchInput) {
     return data;
