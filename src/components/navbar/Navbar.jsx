@@ -41,7 +41,11 @@ const Navbar = () => {
     <div className="relative">
       <div className="flex justify-between items-center mt-5">
         <img className="h-12 w-14" src={logo} />
-        <div className="relative w-full">
+        <div
+          tabIndex={0}
+          onBlur={() => setIsOptionsOpen(false)}
+          className="relative w-full"
+        >
           <p className="text-sm flex justify-end items-center gap-2">
             Hello, <strong>{user?.displayName}</strong>
             <HiOutlineChevronDown
