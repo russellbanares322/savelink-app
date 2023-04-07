@@ -24,12 +24,10 @@ const GoogleSignin = () => {
     <div className="flex items-center justify-center h-full">
       <div className="flex flex-col justify-center items-center bg-white py-10 px-5 gap-8 rounded-lg shadow-xl">
         <img className="h-14 w-16" src={logo} />
-        <h1 className="font-bold text-blue">
-          Welcome to Linksve, save your important links.
-        </h1>
+        <h1 className="font-bold text-blue">Welcome to Linksve ✋</h1>
         <button
           onClick={handleSignIn}
-          className="flex items-center justify-center gap-4 bg-blue text-white h-12 w-60 md:h-16 md:w-64 rounded-lg hover:bg-slate-900"
+          className="flex items-center justify-center gap-4 bg-blue text-white h-12 w-64 md:h-16 md:w-64 rounded-lg hover:bg-slate-900"
         >
           <FcGoogle className="pointer-events-none" size={25} /> Sign in with
           Google

@@ -41,8 +41,8 @@ const Navbar = () => {
     <div className="relative">
       <div className="flex justify-between items-center mt-5">
         <img className="h-12 w-14" src={logo} />
-        <div className="relative">
-          <p className="text-sm flex justify-center items-center gap-2">
+        <div className="relative w-full">
+          <p className="text-sm flex justify-end items-center gap-2">
             Hello, <strong>{user?.displayName}</strong>
             <HiOutlineChevronDown
               onClick={handleToggleOption}
@@ -53,13 +53,13 @@ const Navbar = () => {
             />
           </p>
           <div
-            className={`bg-white h-auto w-auto absolute top-7 left-24 rounded-lg text-sm p-2 flex flex-col justify-start items-start duration-100 ease-in-out ${
+            className={`bg-white h-auto w-auto absolute top-7 -right-0 rounded-lg text-sm p-2 flex flex-col justify-start items-start duration-100 ease-in-out ${
               !isOptionsOpen && "scale-0"
             }`}
           >
             <p
               onClick={handleToggleModal}
-              className="cursor-pointer hover:bg-blue hover:text-white p-1 rounded-lg flex justify-start items-center gap-1 w-full"
+              className="cursor-pointer hover:bg-blue hover:text-white p-1 rounded-lg flex justify-start items-center gap-1 w-auto"
             >
               Add Link <HiOutlineLink />
             </p>
