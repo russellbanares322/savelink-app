@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-hot-toast";
-import { db } from "../../config/firebaseConfig";
+import { auth, db } from "../../config/firebaseConfig";
 import { HiOutlineX } from "react-icons/hi";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Form = ({ isModalOpen, setIsModalOpen }) => {
   const [formInput, setFormInput] = useState({
     description: "",
     link: "",
   });
+  const [user] = useAuthState(auth);
 
   const handleInputChange = (e) => {
     e.stopPropagation();
@@ -28,6 +30,7 @@ const Form = ({ isModalOpen, setIsModalOpen }) => {
         description: formInput.description,
         link: formInput.link,
         timeStamp: serverTimestamp(),
+        userId: user?.uid,
       });
       toast.success("Successfully added link");
       setIsModalOpen(false);

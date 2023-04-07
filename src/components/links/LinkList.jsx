@@ -38,6 +38,9 @@ const LinkList = () => {
     <div className="mt-24">
       <SearchInput setSearchInput={setSearchInput} />
       <h1 className="text-blue font-bold my-4">Important Links:</h1>
+      <h1 className="text-center pt-8">
+        {filteredData.length === 0 && "You have no links saved yet."}
+      </h1>
       {isLoading && (
         <div className="flex justify-center items-center pt-2">
           <FallingLines

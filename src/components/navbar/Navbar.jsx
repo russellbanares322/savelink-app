@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import {
   HiOutlineChevronDown,
   HiOutlineLink,
   HiOutlineLogout,
 } from "react-icons/hi";
+import { auth } from "../../config/firebaseConfig";
 import Form from "../form/Form";
 import logo from "/linksve_logo.png";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+  const [user] = useAuthState(auth);
 
   const handleToggleModal = (e) => {
     e.stopPropagation();
@@ -26,7 +29,7 @@ const Navbar = () => {
         <img className="h-12 w-14" src={logo} />
         <div className="relative">
           <p className="text-sm flex justify-center items-center gap-2">
-            Hello, <strong>Name</strong>
+            Hello, <strong>{user?.displayName}</strong>
             <HiOutlineChevronDown
               onClick={handleToggleOption}
               className={`cursor-pointer duration-100 ease-out ${
