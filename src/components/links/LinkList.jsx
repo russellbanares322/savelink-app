@@ -10,6 +10,7 @@ import Modal from "../modal/Modal";
 import moment from "moment";
 import SearchInput from "../search/SearchInput";
 import useSearchInput from "../../hooks/useSearchInput";
+import UpdateLinkForm from "../form/UpdateLinkForm";
 
 const LinkList = () => {
   const { data, isLoading } = useFetch();
@@ -18,6 +19,7 @@ const LinkList = () => {
   const [selectedActionId, setSelectedActionId] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const filteredData = useSearchInput(searchInput, data);
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
 
   const handleOpenModal = (selectedLink) => {
     setIsModalOpen(true);
@@ -34,12 +36,17 @@ const LinkList = () => {
     );
   };
 
+  const handleUpdateModal = (selectedLink) => {
+    setIsUpdateModalOpen(true);
+    setSelectedData(selectedLink);
+  };
+
   return (
     <div className="mt-24">
       <SearchInput setSearchInput={setSearchInput} />
       <h1 className="text-blue font-bold my-4">Important Links:</h1>
       <h1 className="text-center pt-8">
-        {filteredData.length === 0 && "You have no links saved yet."}
+        {data.length === 0 && "You have no links saved yet"}
       </h1>
       {isLoading && (
         <div className="flex justify-center items-center pt-2">
@@ -84,11 +91,14 @@ const LinkList = () => {
                     selectedActionId !== doc.id && "scale-0"
                   } origin-top duration-200 p-1 absolute top-6 bg-white text-blue drop-shadow-md left-[-37px] rounded-xs gap-2 flex items-center justify-center`}
                 >
-                  <button>
+                  <button onClick={() => handleUpdateModal(doc)}>
                     <HiOutlinePencilAlt size={20} />
                   </button>
                   <button onClick={() => handleOpenModal(doc)}>
-                    <HiOutlineTrash size={20} />
+                    <HiOutlineTrash
+                      className="hover:text-red transition duration-500 ease-in-out"
+                      size={20}
+                    />
                   </button>
                 </div>
               </div>
@@ -103,6 +113,11 @@ const LinkList = () => {
           setIsModalOpen={setIsModalOpen}
         />
       )}
+      <UpdateLinkForm
+        isUpdateModalOpen={isUpdateModalOpen}
+        setIsUpdateModalOpen={setIsUpdateModalOpen}
+        selectedData={selectedData}
+      />
     </div>
   );
 };
