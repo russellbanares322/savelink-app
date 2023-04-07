@@ -1,6 +1,6 @@
 import React from "react";
-import LinkList from "../links/LinkList";
-import Navbar from "../navbar/Navbar";
+import LinkList from "../../components/links/LinkList";
+import Navbar from "../../components/navbar/Navbar";
 
 const Home = () => {
   return (
