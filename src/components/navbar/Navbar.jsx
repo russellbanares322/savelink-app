@@ -57,19 +57,19 @@ const Navbar = () => {
             />
           </p>
           <div
-            className={`bg-white h-auto drop-shadow-md w-auto absolute top-7 -right-0 rounded-lg text-sm p-2 flex flex-col justify-start items-start duration-100 ease-in-out ${
+            className={`bg-white h-auto drop-shadow-md w-auto absolute top-7 -right-0 rounded-md text-sm flex flex-col justify-start items-start duration-100 ease-in-out ${
               !isOptionsOpen && "scale-0"
             }`}
           >
             <p
               onClick={handleToggleModal}
-              className="cursor-pointer hover:bg-blue hover:text-white p-1 rounded-md flex justify-start items-center gap-1 w-auto"
+              className="p-2 rounded-tr-md rounded-tl-md cursor-pointer transition duration-300 ease-in-out hover:bg-blue hover:text-white flex justify-start items-center gap-1 w-auto"
             >
               Add Link <HiOutlineLink />
             </p>
             <p
               onClick={handleLogout}
-              className="cursor-pointer hover:bg-blue hover:text-white p-1 rounded-md flex justify-start items-center gap-1 w-full"
+              className="p-2 rounded-br-md rounded-bl-md cursor-pointer transition duration-300 ease-in-out hover:bg-blue hover:text-white flex justify-start items-center gap-1 w-full"
             >
               Logout <HiOutlineLogout />
             </p>

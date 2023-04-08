@@ -92,11 +92,14 @@ const LinkList = () => {
                   } origin-top duration-200 p-1 absolute top-6 bg-white text-blue drop-shadow-md left-[-37px] rounded-xs gap-2 flex items-center justify-center`}
                 >
                   <button onClick={() => handleUpdateModal(doc)}>
-                    <HiOutlinePencilAlt size={20} />
+                    <HiOutlinePencilAlt
+                      className="transition duration-500 ease-in-out hover:scale-[1.1]"
+                      size={20}
+                    />
                   </button>
                   <button onClick={() => handleOpenModal(doc)}>
                     <HiOutlineTrash
-                      className="hover:text-red transition duration-500 ease-in-out"
+                      className="hover:text-red transition duration-500 ease-in-out hover:scale-[1.1]"
                       size={20}
                     />
                   </button>
