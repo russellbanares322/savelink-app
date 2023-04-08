@@ -11,6 +11,7 @@ import moment from "moment";
 import SearchInput from "../search/SearchInput";
 import useSearchInput from "../../hooks/useSearchInput";
 import UpdateLinkForm from "../form/UpdateLinkForm";
+import Pagination from "../pagination/Pagination";
 
 const LinkList = () => {
   const { data, isLoading } = useFetch();
@@ -18,9 +19,11 @@ const LinkList = () => {
   const [selectedData, setSelectedData] = useState({});
   const [selectedActionId, setSelectedActionId] = useState(null);
   const [searchInput, setSearchInput] = useState("");
-  const filteredData = useSearchInput(searchInput, data);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
+  const [paginate, setPaginate] = useState(4);
+  const filteredData = useSearchInput(searchInput, data, paginate);
 
+  console.log(filteredData);
   const handleOpenModal = (selectedLink) => {
     setIsModalOpen(true);
     setSelectedData(selectedLink);
@@ -107,6 +110,12 @@ const LinkList = () => {
               </div>
             </div>
           ))}
+          <Pagination
+            paginate={paginate}
+            data={data}
+            filteredData={filteredData}
+            setPaginate={setPaginate}
+          />
         </div>
       )}
       {isModalOpen && (
