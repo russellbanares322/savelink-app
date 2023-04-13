@@ -22,10 +22,13 @@ const Form = ({ isModalOpen, setIsModalOpen }) => {
     e.preventDefault();
     if (!formInput.description || !formInput.link) {
       return toast.error("Fields cannot be left empty");
+    } else if (formInput.description.includes(":")) {
+      return toast.error(
+        "This is for description only, use the other input to save link"
+      );
     }
     try {
       const linksRef = collection(db, "LinksDB");
-
       await addDoc(linksRef, {
         description: formInput.description,
         link: formInput.link,
