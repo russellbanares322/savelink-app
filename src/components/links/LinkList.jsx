@@ -12,6 +12,7 @@ import SearchInput from "../search/SearchInput";
 import useSearchInput from "../../hooks/useSearchInput";
 import UpdateLinkForm from "../form/UpdateLinkForm";
 import Pagination from "../pagination/Pagination";
+import FilterSection from "../linkFilter/FilterSection";
 
 const LinkList = () => {
   const { data, isLoading } = useFetch();
@@ -21,6 +22,7 @@ const LinkList = () => {
   const [searchInput, setSearchInput] = useState("");
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
   const [paginate, setPaginate] = useState(4);
+  const isLinkEmpty = data.length === 0;
   const filteredData = useSearchInput(searchInput, data, paginate);
 
   console.log(filteredData);
@@ -48,9 +50,10 @@ const LinkList = () => {
     <div className="mt-24">
       <SearchInput setSearchInput={setSearchInput} />
       <h1 className="text-blue font-bold my-4">Important Links:</h1>
-      <h1 className="text-center pt-8">
-        {data.length === 0 && "You have no links saved yet"}
-      </h1>
+      {isLinkEmpty && (
+        <h1 className="text-center pt-8">You have no links saved yet</h1>
+      )}
+      {!isLinkEmpty && <FilterSection />}
       {isLoading && (
         <div className="flex justify-center items-center pt-2">
           <FallingLines
