@@ -15,9 +15,6 @@ const Pagination = ({ pageNumber, data, filteredData, setPageNumber }) => {
     }
   };
 
-  console.log("data", data.length);
-  console.log("pageNo", pageNumber);
-
   return (
     <div
       className={`flex justify-center items-center mt-3 ${
