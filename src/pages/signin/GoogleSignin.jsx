@@ -13,8 +13,8 @@ const GoogleSignin = () => {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
-      navigate("/");
       toast.success("Successfully logged in");
+      navigate("/links");
     } catch (err) {
       toast.error(err.message);
     }

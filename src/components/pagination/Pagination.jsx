@@ -1,17 +1,22 @@
 import React from "react";
 import { HiOutlineArrowSmDown, HiOutlineArrowSmUp } from "react-icons/hi";
 
-const Pagination = ({ paginate, data, filteredData, setPaginate }) => {
+const Pagination = ({ pageNumber, data, filteredData, setPageNumber }) => {
   const isLoadedAll = filteredData.length === data.length;
   const showButton = data.length > 4;
 
   const handleLoadContent = () => {
-    if (isLoadedAll && paginate !== 4) {
-      setPaginate((prev) => prev - 4);
-    } else {
-      setPaginate((prev) => prev + 4);
+    if (isLoadedAll && pageNumber >= 4) {
+      return setPageNumber((prev) => prev - 4);
+    }
+
+    if (!isLoadedAll) {
+      return setPageNumber((prev) => prev + 4);
     }
   };
+
+  console.log("data", data.length);
+  console.log("pageNo", pageNumber);
 
   return (
     <div

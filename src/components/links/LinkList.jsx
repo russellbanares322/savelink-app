@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FallingLines } from "react-loader-spinner";
-import useFetch from "../../hooks/useFetch";
 import {
   HiOutlineCog,
   HiOutlinePencilAlt,
@@ -13,19 +12,19 @@ import useSearchInput from "../../hooks/useSearchInput";
 import UpdateLinkForm from "../form/UpdateLinkForm";
 import Pagination from "../pagination/Pagination";
 import FilterSection from "../linkFilter/FilterSection";
+import { LinkContext } from "../../context/LinkContext";
 
 const LinkList = () => {
-  const { data, isLoading } = useFetch();
+  const { data, isLoading } = useContext(LinkContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedData, setSelectedData] = useState({});
   const [selectedActionId, setSelectedActionId] = useState(null);
   const [searchInput, setSearchInput] = useState("");
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-  const [paginate, setPaginate] = useState(4);
-  const isLinkEmpty = data.length === 0;
-  const filteredData = useSearchInput(searchInput, data, paginate);
+  const [pageNumber, setPageNumber] = useState(4);
+  const isLinkEmpty = data?.length === 0;
+  const filteredData = useSearchInput(searchInput, data, pageNumber);
 
-  console.log(filteredData);
   const handleOpenModal = (selectedLink) => {
     setIsModalOpen(true);
     setSelectedData(selectedLink);
@@ -114,10 +113,10 @@ const LinkList = () => {
             </div>
           ))}
           <Pagination
-            paginate={paginate}
+            pageNumber={pageNumber}
             data={data}
             filteredData={filteredData}
-            setPaginate={setPaginate}
+            setPageNumber={setPageNumber}
           />
         </div>
       )}

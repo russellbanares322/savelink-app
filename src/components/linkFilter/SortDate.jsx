@@ -1,8 +1,8 @@
-import React from "react";
-import useFetch from "../../hooks/useFetch";
+import React, { useContext } from "react";
+import { LinkContext } from "../../context/LinkContext";
 
 const SortDate = () => {
-  const { handleSortChange, sortByDate } = useFetch();
+  const { handleSortChange, sortByDate } = useContext(LinkContext);
 
   return (
     <div>

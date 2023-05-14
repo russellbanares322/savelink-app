@@ -1,6 +1,6 @@
-const useSearchInput = (searchInput, data, paginate) => {
+const useSearchInput = (searchInput, data, pageNumber) => {
   if (!searchInput) {
-    return data.slice(0, paginate);
+    return data.slice(0, pageNumber);
   }
 
   return data.filter((item) =>
