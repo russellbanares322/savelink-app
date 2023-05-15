@@ -1,3 +1,4 @@
+import { signOut } from "firebase/auth";
 import {
   collection,
   onSnapshot,
@@ -8,6 +9,8 @@ import {
 import { createContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from "../config/firebaseConfig";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export const LinkContext = createContext();
 
@@ -15,10 +18,21 @@ const LinkContextProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [sortByDate, setSortByDate] = useState("desc");
+  const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
   const handleSortChange = (e) => {
     setSortByDate(e.target.value);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      toast.success("Successfully logged out");
+      navigate("/");
+    } catch (err) {
+      toast.error(err.message);
+    }
   };
 
   useEffect(() => {
@@ -42,7 +56,7 @@ const LinkContextProvider = ({ children }) => {
 
   return (
     <LinkContext.Provider
-      value={{ data, isLoading, sortByDate, handleSortChange }}
+      value={{ data, isLoading, sortByDate, handleSortChange, handleLogout }}
     >
       {children}
     </LinkContext.Provider>

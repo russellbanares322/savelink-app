@@ -9,9 +9,8 @@ const Pagination = ({ pageNumber, data, filteredData, setPageNumber }) => {
     if (isLoadedAll && pageNumber >= 4) {
       return setPageNumber((prev) => prev - 4);
     }
-
     if (!isLoadedAll) {
-      return setPageNumber((prev) => prev + 4);
+      setPageNumber((prev) => prev + 4);
     }
   };
 

@@ -1,7 +1,5 @@
-import { signOut } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import toast from "react-hot-toast";
 import {
   HiOutlineChevronDown,
   HiOutlineLink,
@@ -10,13 +8,13 @@ import {
 import { auth } from "../../config/firebaseConfig";
 import Form from "../form/AddLinkForm";
 import logo from "/linksve_logo.png";
-import { useNavigate } from "react-router-dom";
+import { LinkContext } from "../../context/LinkContext";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
+  const { handleLogout } = useContext(LinkContext);
   const [user] = useAuthState(auth);
-  const navigate = useNavigate();
 
   const handleToggleModal = (e) => {
     e.stopPropagation();
@@ -25,16 +23,6 @@ const Navbar = () => {
 
   const handleToggleOption = () => {
     setIsOptionsOpen(!isOptionsOpen);
-  };
-
-  const handleLogout = async () => {
-    try {
-      await signOut(auth);
-      toast.success("Successfully logged out");
-      navigate("/");
-    } catch (err) {
-      toast.error(err.message);
-    }
   };
 
   return (

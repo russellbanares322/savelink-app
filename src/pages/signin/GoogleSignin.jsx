@@ -1,5 +1,6 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
@@ -8,13 +9,16 @@ import logo from "/linksve_logo.png";
 
 const GoogleSignin = () => {
   const navigate = useNavigate();
+  const [user] = useAuthState(auth);
 
   const handleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
       await signInWithPopup(auth, provider);
       toast.success("Successfully logged in");
-      navigate("/links");
+      if (user !== null) {
+        navigate("/links");
+      }
     } catch (err) {
       toast.error(err.message);
     }
