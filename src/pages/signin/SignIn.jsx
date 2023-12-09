@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import { auth } from "../../config/firebaseConfig";
+import { isInputFieldEmpty } from "../../utils/isInputFieldEmpty";
 import { inputsData } from "./inputsData";
 
 const SignIn = () => {
@@ -16,14 +17,6 @@ const SignIn = () => {
     isLoading: false,
   });
   const navigate = useNavigate();
-
-  const isInputFieldEmpty = (input) => {
-    if (input.trim().length === 0) {
-      return true;
-    }
-
-    return false;
-  };
 
   const handleInputChange = (e) => {
     const { value, id } = e.target;
@@ -64,7 +57,7 @@ const SignIn = () => {
           });
         }
       } catch (err) {
-        toast.error(error.message);
+        toast.error(err.message);
         setFormSettings({
           ...formSettings,
           isLoading: false,
