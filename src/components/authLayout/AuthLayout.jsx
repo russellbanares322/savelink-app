@@ -15,7 +15,7 @@ const AuthLayout = () => {
             Welcome to Linksve
             <span className="animate-waving-hand text-lg">👋</span>
           </h1>
-          <h1 className="text-center text-sm">Please login your account.</h1>
+          <h1 className="text-center text-sm">Login to your Account</h1>
         </div>
         <Outlet />
         <div className="flex items-center justify-between gap-1 w-full">

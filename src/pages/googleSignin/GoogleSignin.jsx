@@ -29,6 +29,7 @@ const GoogleSignin = () => {
       onClick={handleSignIn}
       title="Sign in with Google"
       icon={<FcGoogle className="pointer-events-none" size={25} />}
+      type="button"
     />
   );
 };
