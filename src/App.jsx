@@ -4,7 +4,8 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebaseConfig";
 import { useEffect, useContext } from "react";
 import { LinkContext } from "./context/LinkContext";
-import AuthLayout from "./components/auth-layout/AuthLayout";
+import AuthLayout from "./components/authLayout/AuthLayout";
+import SignIn from "./pages/signin/SignIn";
 
 function App() {
   const [user] = useAuthState(auth);
@@ -14,8 +15,6 @@ function App() {
   useEffect(() => {
     if (user) {
       return navigate("/");
-    } else {
-      return navigate("/auth");
     }
   }, [user]);
 
@@ -30,7 +29,9 @@ function App() {
       <div className="h-full w-full md:w-[45rem]">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<AuthLayout />} />
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="sign-in" element={<SignIn />} />
+          </Route>
         </Routes>
       </div>
     </div>
