@@ -4,7 +4,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebaseConfig";
 import { useEffect, useContext } from "react";
 import { LinkContext } from "./context/LinkContext";
-import GoogleSignin from "./pages/google-signin/GoogleSignin";
 import AuthLayout from "./components/auth-layout/AuthLayout";
 
 function App() {
