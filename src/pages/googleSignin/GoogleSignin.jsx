@@ -25,12 +25,14 @@ const GoogleSignin = () => {
   };
 
   return (
-    <Button
-      onClick={handleSignIn}
-      title="Sign in with Google"
-      icon={<FcGoogle className="pointer-events-none" size={25} />}
-      type="button"
-    />
+    <div className="mt-2">
+      <Button
+        onClick={handleSignIn}
+        title="Sign in with Google"
+        icon={<FcGoogle className="pointer-events-none" size={25} />}
+        type="button"
+      />
+    </div>
   );
 };
 

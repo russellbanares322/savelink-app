@@ -18,15 +18,18 @@ const AuthLayout = () => {
           <h1 className="text-center text-sm">Login to your Account</h1>
         </div>
         <Outlet />
+        <p className="text-sm text-center mt-3 mb-2">
+          Dont have an account?{" "}
+          <span className="font-bold cursor-pointer hover:underline">
+            Create an Account
+          </span>
+        </p>
         <div className="flex items-center justify-between gap-1 w-full">
           <div className="w-full h-[1px] bg-black" />
           <span>OR</span>
           <div className="w-full h-[1px] bg-black" />
         </div>
         <GoogleSignin />
-        <p className="text-sm font-bold text-center my-2 cursor-pointer hover:underline">
-          Create an Account
-        </p>
       </div>
     </div>
   );
