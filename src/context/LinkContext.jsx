@@ -18,6 +18,7 @@ const LinkContextProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [sortByDate, setSortByDate] = useState("desc");
+  const [selectedLanguage, setSelectedLanguage] = useState("en");
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
 
@@ -56,7 +57,15 @@ const LinkContextProvider = ({ children }) => {
 
   return (
     <LinkContext.Provider
-      value={{ data, isLoading, sortByDate, handleSortChange, handleLogout }}
+      value={{
+        data,
+        isLoading,
+        sortByDate,
+        handleSortChange,
+        handleLogout,
+        setSelectedLanguage,
+        selectedLanguage,
+      }}
     >
       {children}
     </LinkContext.Provider>

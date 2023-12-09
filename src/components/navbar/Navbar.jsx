@@ -9,6 +9,7 @@ import { auth } from "../../config/firebaseConfig";
 import Form from "../form/AddLinkForm";
 import logo from "/linksve_logo.png";
 import { LinkContext } from "../../context/LinkContext";
+import LanguageTranslator from "../languageTranslation/LanguageTranslator";
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,6 +35,9 @@ const Navbar = () => {
           onBlur={() => setIsOptionsOpen(false)}
           className="relative w-full"
         >
+          <div>
+            <LanguageTranslator />
+          </div>
           <p className="text-sm flex justify-end items-center gap-2">
             Hello, <strong>{user?.displayName}</strong>
             <HiOutlineChevronDown
