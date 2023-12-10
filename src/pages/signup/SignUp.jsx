@@ -113,7 +113,11 @@ const SignUp = () => {
           </div>
         );
       })}
-      <Button type="submit" title="Sign Up" />
+      <Button
+        isLoading={formSettings.isLoading}
+        type="submit"
+        title="Sign Up"
+      />
     </form>
   );
 };
