@@ -62,6 +62,7 @@ const SignIn = () => {
             isInputDirty: false,
             isLoading: false,
           });
+          toast.success("Successfully logged in");
         }
       } catch (err) {
         toast.error(err.message);
