@@ -7,11 +7,7 @@ const ProtectedRoutes = ({ children }) => {
   const [user] = useAuthState(auth);
   const isLoggedIn = user !== null;
 
-  if (isLoggedIn) {
-    return children;
-  }
-
-  return <Navigate to="/auth/sign-in" replace={true} />;
+  return isLoggedIn ? children : <Navigate to="/auth/sign-in" />;
 };
 
 export default ProtectedRoutes;
