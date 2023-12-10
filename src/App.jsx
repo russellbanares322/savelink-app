@@ -1,22 +1,11 @@
-import Home from "./pages/home/Home";
-import { Routes, Route, useNavigate } from "react-router-dom";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./config/firebaseConfig";
+import { Routes, Route } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { LinkContext } from "./context/LinkContext";
-import AuthLayout from "./components/authLayout/AuthLayout";
-import SignIn from "./pages/signin/SignIn";
+import { routes } from "./routes/routes";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 function App() {
-  const [user] = useAuthState(auth);
   const { handleLogout } = useContext(LinkContext);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (user) {
-      return navigate("/");
-    }
-  }, [user]);
 
   useEffect(() => {
     window.addEventListener("unload", () => {
@@ -24,14 +13,41 @@ function App() {
     });
   }, []);
 
+  const renderRouteElement = (isPrivate, element) => {
+    if (isPrivate) {
+      return <ProtectedRoutes children={element} />;
+    }
+    return element;
+  };
+
   return (
     <div className="bg-light-blue font-jetbrains flex flex-col justify-center items-center h-full w-full py-4 px-4 md:px-10">
       <div className="h-full w-full md:w-[45rem]">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<AuthLayout />}>
-            <Route path="sign-in" element={<SignIn />} />
-          </Route>
+          {routes.map((route) => {
+            const elementHasChild = route.child.length > 0;
+
+            return elementHasChild ? (
+              <Route
+                key={route.id}
+                path={route.path}
+                element={renderRouteElement(route.isPrivate, route.element)}
+              >
+                {route.child.map((item) => (
+                  <Route
+                    key={item.id}
+                    path={item.path}
+                    element={renderRouteElement(item.isPrivate, item.element)}
+                  />
+                ))}
+              </Route>
+            ) : (
+              <Route
+                key={route.id}
+                element={renderRouteElement(route.isPrivate, route.element)}
+              />
+            );
+          })}
         </Routes>
       </div>
     </div>
