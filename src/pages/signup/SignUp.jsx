@@ -53,11 +53,14 @@ const SignUp = () => {
           formData.email,
           formData.password
         );
-        localStorage.setItem("user-info", {
-          email: userData?.email,
-          displayName: userData?.displayName,
-          accessToken: userData?.accessToken,
-        });
+        localStorage.setItem(
+          "user-info",
+          JSON.stringify({
+            email: userData?.user?.email,
+            displayName: userData?.user?.displayName,
+            accessToken: userData?.user?.accessToken,
+          })
+        );
         await updateProfile(auth?.currentUser, {
           displayName: formData.fullName,
         });

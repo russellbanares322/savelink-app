@@ -1,11 +1,9 @@
 import React, { useState, useContext } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import {
   HiOutlineChevronDown,
   HiOutlineLink,
   HiOutlineLogout,
 } from "react-icons/hi";
-import { auth } from "../../config/firebaseConfig";
 import Form from "../form/AddLinkForm";
 import logo from "/linksve_logo.png";
 import { LinkContext } from "../../context/LinkContext";
@@ -14,8 +12,7 @@ import LanguageTranslator from "../languageTranslation/LanguageTranslator";
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(false);
-  const { handleLogout } = useContext(LinkContext);
-  const [user] = useAuthState(auth);
+  const { handleLogout, userData } = useContext(LinkContext);
 
   const handleToggleModal = (e) => {
     e.stopPropagation();
@@ -39,7 +36,7 @@ const Navbar = () => {
             <LanguageTranslator />
           </div>
           <p className="text-sm flex justify-end items-center gap-2">
-            Hello, <strong>{user?.displayName}</strong>
+            Hello, <strong>{userData?.displayName}</strong>
             <HiOutlineChevronDown
               onClick={handleToggleOption}
               className={`cursor-pointer duration-100 ease-out ${

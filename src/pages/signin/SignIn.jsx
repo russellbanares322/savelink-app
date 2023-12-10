@@ -39,13 +39,20 @@ const SignIn = () => {
       });
     } else {
       try {
-        const isUserSuccessfullySignedIn = await signInWithEmailAndPassword(
+        const userData = await signInWithEmailAndPassword(
           auth,
           formData.email,
           formData.password
         );
-
-        if (isUserSuccessfullySignedIn) {
+        localStorage.setItem(
+          "user-info",
+          JSON.stringify({
+            email: userData?.user?.email,
+            displayName: userData?.user?.displayName,
+            accessToken: userData?.user?.accessToken,
+          })
+        );
+        if (userData) {
           navigate("/");
           setFormData({
             email: "",

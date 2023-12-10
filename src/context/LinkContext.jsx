@@ -21,6 +21,7 @@ const LinkContextProvider = ({ children }) => {
   const [selectedLanguage, setSelectedLanguage] = useState("en");
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const userData = JSON.parse(localStorage.getItem("user-info"));
 
   const handleSortChange = (e) => {
     setSortByDate(e.target.value);
@@ -30,6 +31,7 @@ const LinkContextProvider = ({ children }) => {
     try {
       await signOut(auth);
       toast.success("Successfully logged out");
+      localStorage.removeItem("user-info");
       navigate("/");
     } catch (err) {
       toast.error(err.message);
@@ -58,6 +60,7 @@ const LinkContextProvider = ({ children }) => {
   return (
     <LinkContext.Provider
       value={{
+        userData,
         data,
         isLoading,
         sortByDate,

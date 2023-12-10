@@ -1,11 +1,10 @@
-import React from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
+import React, { useContext } from "react";
 import { Navigate } from "react-router-dom";
-import { auth } from "../config/firebaseConfig";
+import { LinkContext } from "../context/LinkContext";
 
 const ProtectedRoutes = ({ children }) => {
-  const [user] = useAuthState(auth);
-  const isLoggedIn = user !== null;
+  const { userData } = useContext(LinkContext);
+  const isLoggedIn = userData;
 
   return isLoggedIn ? children : <Navigate to="/auth/sign-in" />;
 };
