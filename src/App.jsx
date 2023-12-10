@@ -16,7 +16,6 @@ function App() {
   const renderRouteElement = (isPrivate, element) => {
     return !isPrivate ? element : <ProtectedRoutes children={element} />;
   };
-  //*TODO: Save user data in local storage after logging in, then use that to check if the user is authenticated
 
   return (
     <div className="bg-light-blue font-jetbrains flex flex-col justify-center items-center h-full w-full py-4 px-4 md:px-10">
@@ -42,6 +41,7 @@ function App() {
             ) : (
               <Route
                 key={route.id}
+                path={route.path}
                 element={renderRouteElement(route.isPrivate, route.element)}
               />
             );

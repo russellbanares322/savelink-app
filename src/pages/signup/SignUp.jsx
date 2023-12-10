@@ -1,16 +1,18 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/button/Button";
 import { auth } from "../../config/firebaseConfig";
-import { signInInputsData } from "../../data/inputsData";
+import { signUpInputsData } from "../../data/inputsData";
 import { isInputFieldEmpty } from "../../utils/isInputFieldEmpty";
 
-const SignIn = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
+    fullName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
   const [formSettings, setFormSettings] = useState({
     isInputDirty: false,
@@ -21,6 +23,13 @@ const SignIn = () => {
   const handleInputChange = (e) => {
     const { value, id } = e.target;
     setFormData({ ...formData, [id]: value });
+  };
+
+  const isPasswordMatched = () => {
+    if (formData.password !== formData.confirmPassword) {
+      return true;
+    }
+    return false;
   };
 
   const onSubmit = async (e) => {
@@ -39,17 +48,26 @@ const SignIn = () => {
       });
     } else {
       try {
-        const isUserSuccessfullySignedIn = await signInWithEmailAndPassword(
+        const userData = await createUserWithEmailAndPassword(
           auth,
           formData.email,
           formData.password
         );
-
-        if (isUserSuccessfullySignedIn) {
+        localStorage.setItem("user-info", {
+          email: userData?.email,
+          displayName: userData?.displayName,
+          accessToken: userData?.accessToken,
+        });
+        await updateProfile(auth?.currentUser, {
+          displayName: formData.fullName,
+        });
+        if (userData) {
           navigate("/");
           setFormData({
+            fullName: "",
             email: "",
             password: "",
+            confirmPassword: "",
           });
           setFormSettings({
             isInputDirty: false,
@@ -68,7 +86,7 @@ const SignIn = () => {
 
   return (
     <form onSubmit={onSubmit} className="mb-1">
-      {signInInputsData.map((input) => {
+      {signUpInputsData.map((input) => {
         const inputId = input.id;
         return (
           <div
@@ -80,7 +98,7 @@ const SignIn = () => {
               id={inputId}
               value={formData[inputId]}
               onChange={handleInputChange}
-              autoFocus={input.label === "Email Address"}
+              autoFocus={input.label === "Full Name"}
               className="text-sm outline-none border-b border-b-blue w-full py-1"
               type={input.type}
               placeholder={input.placeholder}
@@ -92,9 +110,9 @@ const SignIn = () => {
           </div>
         );
       })}
-      <Button type="submit" title="Sign In" />
+      <Button type="submit" title="Sign Up" />
     </form>
   );
 };
 
-export default SignIn;
+export default SignUp;

@@ -1,9 +1,40 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import GoogleSignin from "../../pages/googleSignin/GoogleSignin";
 import logo from "/linksve_logo.png";
 
 const AuthLayout = () => {
+  const location = useLocation();
+  const isInSignUpPage = location.pathname === "/auth/sign-up";
+  const isInSignInPage = location.pathname === "/auth/sign-in";
+
+  const renderLayoutTitles = () => {
+    if (isInSignUpPage) {
+      return {
+        headerText: "Create your Account",
+        footerText: (
+          <p className="text-sm text-center mt-3 mb-2">
+            Already have an account?{" "}
+            <span className="font-bold cursor-pointer hover:underline">
+              Login your Account
+            </span>
+          </p>
+        ),
+      };
+    } else if (isInSignInPage) {
+      return {
+        headerText: "Login to your Account",
+        footerText: (
+          <p className="text-sm text-center mt-3 mb-2">
+            Dont have an account?{" "}
+            <span className="font-bold cursor-pointer hover:underline">
+              Create an Account
+            </span>
+          </p>
+        ),
+      };
+    }
+  };
   return (
     <div className="flex items-center justify-center h-full text-blue">
       <div className=" bg-white py-8 px-10 rounded-lg shadow-xl">
@@ -15,15 +46,12 @@ const AuthLayout = () => {
             Welcome to Linksve
             <span className="animate-waving-hand text-lg">👋</span>
           </h1>
-          <h1 className="text-center text-sm">Login to your Account</h1>
+          <h1 className="text-center text-sm">
+            {renderLayoutTitles().headerText}
+          </h1>
         </div>
         <Outlet />
-        <p className="text-sm text-center mt-3 mb-2">
-          Dont have an account?{" "}
-          <span className="font-bold cursor-pointer hover:underline">
-            Create an Account
-          </span>
-        </p>
+        {renderLayoutTitles().footerText}
         <div className="flex items-center justify-between gap-1 w-full">
           <div className="w-full h-[1px] bg-black" />
           <span>OR</span>
