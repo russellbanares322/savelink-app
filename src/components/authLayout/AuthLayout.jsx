@@ -1,10 +1,11 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import GoogleSignin from "../../pages/googleSignin/GoogleSignin";
 import logo from "/linksve_logo.png";
 
 const AuthLayout = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isInSignUpPage = location.pathname === "/auth/sign-up";
   const isInSignInPage = location.pathname === "/auth/sign-in";
 
@@ -15,7 +16,10 @@ const AuthLayout = () => {
         footerText: (
           <p className="text-sm text-center mt-3 mb-2">
             Already have an account?{" "}
-            <span className="font-bold cursor-pointer hover:underline">
+            <span
+              onClick={() => navigate("/auth/sign-in")}
+              className="font-bold cursor-pointer hover:underline"
+            >
               Login your Account
             </span>
           </p>
@@ -27,7 +31,10 @@ const AuthLayout = () => {
         footerText: (
           <p className="text-sm text-center mt-3 mb-2">
             Dont have an account?{" "}
-            <span className="font-bold cursor-pointer hover:underline">
+            <span
+              onClick={() => navigate("/auth/sign-up")}
+              className="font-bold cursor-pointer hover:underline"
+            >
               Create an Account
             </span>
           </p>
@@ -35,6 +42,7 @@ const AuthLayout = () => {
       };
     }
   };
+
   return (
     <div className="flex items-center justify-center h-full text-blue">
       <div className=" bg-white py-8 px-10 rounded-lg shadow-xl">
