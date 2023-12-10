@@ -25,7 +25,7 @@ const SignUp = () => {
     setFormData({ ...formData, [id]: value });
   };
 
-  const isPasswordMatched = () => {
+  const isPasswordUnMatched = () => {
     if (formData.password !== formData.confirmPassword) {
       return true;
     }
@@ -91,6 +91,8 @@ const SignUp = () => {
     <form onSubmit={onSubmit} className="mb-1">
       {signUpInputsData.map((input) => {
         const inputId = input.id;
+        const renderUnmatchedPasswordMessage =
+          input.label === "Confirm Password";
         return (
           <div
             key={inputId}
@@ -102,13 +104,18 @@ const SignUp = () => {
               value={formData[inputId]}
               onChange={handleInputChange}
               autoFocus={input.label === "Full Name"}
-              className="text-sm outline-none border-b border-b-blue w-full py-1"
+              className="text-sm outline-none border-b-2 border-b-blue w-full py-1"
               type={input.type}
               placeholder={input.placeholder}
             />
             {formSettings.isInputDirty &&
               isInputFieldEmpty(formData[inputId]) && (
                 <p className="text-xs text-red">{input.label} is required</p>
+              )}
+            {renderUnmatchedPasswordMessage &&
+              !isInputFieldEmpty(formData.confirmPassword) &&
+              isPasswordUnMatched() && (
+                <p className="text-xs text-red">Passwords dont match</p>
               )}
           </div>
         );

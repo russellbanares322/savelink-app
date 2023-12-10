@@ -88,7 +88,7 @@ const SignIn = () => {
               value={formData[inputId]}
               onChange={handleInputChange}
               autoFocus={input.label === "Email Address"}
-              className="text-sm outline-none border-b border-b-blue w-full py-1"
+              className="text-sm outline-none border-b-2 border-b-blue w-full py-1"
               type={input.type}
               placeholder={input.placeholder}
             />
