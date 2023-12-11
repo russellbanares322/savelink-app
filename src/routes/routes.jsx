@@ -24,7 +24,7 @@ export const routes = [
         isPrivate: false,
       },
       {
-        id: 3,
+        id: 4,
         path: "sign-up",
         element: <SignUp />,
         child: [],
