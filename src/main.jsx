@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </Router>
     <Toaster
       containerClassName="font-jetbrains"
-      position="top-center"
+      position="top-right"
       reverseOrder={false}
       toastOptions={{
         duration: 2000,

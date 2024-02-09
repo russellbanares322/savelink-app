@@ -45,11 +45,11 @@ const SignIn = () => {
           formData.password
         );
         localStorage.setItem(
-          "user-info",
+          "linksve-user-info",
           JSON.stringify({
             email: userData?.user?.email,
             displayName: userData?.user?.displayName,
-            accessToken: userData?.user?.accessToken,
+            uid: userData?.user?.uid,
           })
         );
         if (userData) {

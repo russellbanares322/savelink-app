@@ -42,7 +42,7 @@ const UpdateLinkForm = ({
         link: "",
       });
     } catch (err) {
-      console.log(err);
+      toast.error(err.message);
     }
   };
 

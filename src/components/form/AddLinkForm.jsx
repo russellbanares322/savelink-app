@@ -42,7 +42,7 @@ const Form = ({ isModalOpen, setIsModalOpen }) => {
         link: "",
       });
     } catch (err) {
-      console.log(err);
+      toast.error(err.message);
     }
   };
 

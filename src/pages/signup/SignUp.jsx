@@ -53,17 +53,17 @@ const SignUp = () => {
           formData.email,
           formData.password
         );
-        localStorage.setItem(
-          "user-info",
-          JSON.stringify({
-            email: userData?.user?.email,
-            displayName: userData?.user?.displayName,
-            accessToken: userData?.user?.accessToken,
-          })
-        );
         await updateProfile(auth?.currentUser, {
           displayName: formData.fullName,
         });
+        localStorage.setItem(
+          "linksve-user-info",
+          JSON.stringify({
+            email: userData?.user?.email,
+            displayName: formData.fullName,
+            uid: userData?.user?.uid,
+          })
+        );
         if (userData) {
           navigate("/");
           setFormData({
